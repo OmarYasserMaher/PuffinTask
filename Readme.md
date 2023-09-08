@@ -1,7 +1,6 @@
-# FastAPI Python App
+# PuffinTask Python App
 
-This is a simple FastAPI Python app that demonstrates how to create a RESTful API using FastAPI and run it using Uvicorn.
-
+This is Python-based web scraper that collects data from a yahoo finance crypto, stores the data in a database, and exposes the data through a simple API using FastAPI.
 ## Getting Started
 
 Follow these instructions to set up and run the FastAPI app on your local machine.
@@ -42,8 +41,23 @@ Follow these instructions to set up and run the FastAPI app on your local machin
    ```bash
    pip install -r requirements.txt
 
+6. Create .env file for your environment variables in the root directory of the project. The .env file should contain the following variables:
+
+   ```bash
+    DATABASE_USER=
+    DATABASE_PASSWORD=
+    DATABASE_NAME=
+    DATABASE_HOST=
+   ```
+
 ### Running the App
 Once you have set up the environment, you can run the FastAPI app using Uvicorn.
     
     ```bash
-    uvicorn main:app --reload
+    uvicorn main:app --host 0.0.0.0 --port 8080
+
+
+### accessing the API
+1. Do a get Request to http://localhost:8080/finance_data/all this will list 100 row of data from the database
+2. you can filter the data by adding a query parameter to the url for example http://localhost:8080/finance_data/all?name=Symbol&value=BTC-USD will return all the data for BTC-USD
+3. you can also get a single row of data by adding the id of the row to the url for example http://localhost:8080/finance_data/1 will return the first row of data in the database
